@@ -1,7 +1,7 @@
 # Github API helpers
 #
 # This script doesn't add anything to Hubot by itself. It can be used by other
-# scripts wishing to use the Github API to reduce code duplication.
+# scripts wishing to use the Github API.
 
 module.exports = (robot) ->
   robot.github = {
