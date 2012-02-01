@@ -11,8 +11,7 @@
 module.exports = (robot) ->
   robot.respond /show\s+(me\s+)?issues\s+(for\s+)?(.*)/i, (msg)->
     oauth_token = process.env.HUBOT_GITHUB_TOKEN
-    repo = msg.match[3].toLowerCase()
-    repo = "#{process.env.HUBOT_GITHUB_USER}/#{repo}" unless ~repo.indexOf("/")
+    repo = robot.github.qualified_repo msg.match[3]
     msg.http("https://api.github.com/repos/#{repo}/issues")
       .headers(Authorization: "token #{oauth_token}", Accept: "application/json")
       .query(state: "open", sort: "created")
